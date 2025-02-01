@@ -1,47 +1,48 @@
 from selenium.webdriver.common.by import By
 
-rental_price_locator = (By.XPATH, ".//div[@id='accordion__heading-0']")
-rental_price_text_locator = (By.XPATH, ".//div[@id='accordion__panel-0']")
+RENTAL_PRICE_LOCATOR = (By.XPATH, ".//div[@id='accordion__heading-0']")
+RENTAL_PRICE_TEXT_LOCATOR = (By.XPATH, ".//div[@id='accordion__panel-0']")
 
-rental_policy_single_order_locator = (By.XPATH, ".//div[@id='accordion__heading-1']")
-rental_policy_single_order_text_locator = (By.XPATH, ".//div[@id='accordion__panel-1']")
+RENTAL_POLICY_SINGLE_ORDER_LOCATOR = (By.XPATH, ".//div[@id='accordion__heading-1']")
+RENTAL_POLICY_SINGLE_ORDER_TEXT_LOCATOR = (By.XPATH, ".//div[@id='accordion__panel-1']")
 
-rental_period_locator = (By.XPATH, ".//div[@id='accordion__heading-2']")
-rental_period_text_locator = (By.XPATH, ".//div[@id='accordion__panel-2']")
+RENTAL_PERIOD_LOCATOR = (By.XPATH, ".//div[@id='accordion__heading-2']")
+RENTAL_PERIOD_TEXT_LOCATOR = (By.XPATH, ".//div[@id='accordion__panel-2']")
 
-scooter_availability_locator = (By.XPATH, ".//div[@id='accordion__heading-3']")
-scooter_availability_text_locator = (By.XPATH, ".//div[@id='accordion__panel-3']")
+SCOOTER_AVAILABILITY_LOCATOR = (By.XPATH, ".//div[@id='accordion__heading-3']")
+SCOOTER_AVAILABILITY_TEXT_LOCATOR = (By.XPATH, ".//div[@id='accordion__panel-3']")
 
-support_contact_locator = (By.XPATH, ".//div[@id='accordion__heading-4']")
-support_contact_text_locator = (By.XPATH, ".//div[@id='accordion__panel-4']")
+SUPPORT_CONTACT_LOCATOR = (By.XPATH, ".//div[@id='accordion__heading-4']")
+SUPPORT_CONTACT_TEXT_LOCATOR = (By.XPATH, ".//div[@id='accordion__panel-4']")
 
-scooter_battery_locator = (By.XPATH, ".//div[@id='accordion__heading-5']")
-scooter_battery_text_locator = (By.XPATH, ".//div[@id='accordion__panel-5']")
+SCOOTER_BATTERY_LOCATOR = (By.XPATH, ".//div[@id='accordion__heading-5']")
+SCOOTER_BATTERY_TEXT_LOCATOR = (By.XPATH, ".//div[@id='accordion__panel-5']")
 
-order_cancellation_locator = (By.XPATH, ".//div[@id='accordion__heading-6']")
-order_cancellation_text_locator = (By.XPATH, ".//div[@id='accordion__panel-6']")
+ORDER_CANCELLATION_LOCATOR = (By.XPATH, ".//div[@id='accordion__heading-6']")
+ORDER_CANCELLATION_TEXT_LOCATOR = (By.XPATH, ".//div[@id='accordion__panel-6']")
 
-delivery_area_locator = (By.XPATH, ".//div[@id='accordion__heading-7']")
-delivery_area_text_locator = (By.XPATH, ".//div[@id='accordion__panel-7']")
+DELIVERY_AREA_LOCATOR = (By.XPATH, ".//div[@id='accordion__heading-7']")
+DELIVERY_AREA_TEXT_LOCATOR = (By.XPATH, ".//div[@id='accordion__panel-7']")
 
-list_question = [
-    rental_price_locator,
-    rental_policy_single_order_locator,
-    rental_period_locator,
-    scooter_availability_locator,
-    support_contact_locator,
-    scooter_battery_locator,
-    order_cancellation_locator,
-    delivery_area_locator
+LIST_QUESTION = [
+    RENTAL_PRICE_LOCATOR,
+    RENTAL_POLICY_SINGLE_ORDER_LOCATOR,
+    RENTAL_PERIOD_LOCATOR,
+    SCOOTER_AVAILABILITY_LOCATOR,
+    SUPPORT_CONTACT_LOCATOR,
+    SCOOTER_BATTERY_LOCATOR,
+    ORDER_CANCELLATION_LOCATOR,
+    DELIVERY_AREA_LOCATOR
 ]
-list_answer = [
-    rental_price_text_locator,
-    rental_policy_single_order_text_locator,
-    rental_period_text_locator,
-    scooter_availability_text_locator,
-    support_contact_text_locator,
-    scooter_battery_text_locator,
-    order_cancellation_text_locator,
-    delivery_area_text_locator
+
+LIST_ANSWER = [
+    RENTAL_PRICE_TEXT_LOCATOR,
+    RENTAL_POLICY_SINGLE_ORDER_TEXT_LOCATOR,
+    RENTAL_PERIOD_TEXT_LOCATOR,
+    SCOOTER_AVAILABILITY_TEXT_LOCATOR,
+    SUPPORT_CONTACT_TEXT_LOCATOR,
+    SCOOTER_BATTERY_TEXT_LOCATOR,
+    ORDER_CANCELLATION_TEXT_LOCATOR,
+    DELIVERY_AREA_TEXT_LOCATOR
 ]
 
