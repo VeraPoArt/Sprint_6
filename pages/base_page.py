@@ -4,14 +4,16 @@ from selenium.webdriver.common.by import By
 import allure
 from selenium.common.exceptions import TimeoutException
 
+from pages.urls import URLs
+
 class BasePage:
-    def __init__(self, driver, timeout=10):
+    def __init__(self, driver, timeout=60):
         self.driver = driver
         self.wait = WebDriverWait(driver, timeout)
 
     @allure.step("Открытие страницы")
-    def open(self, url: str):
-        self.driver.get(url)
+    def open(self):
+        self.driver.get(f'{URLs.BASE_URL}')
 
     @allure.step("Поиск элемента с локатором")
     def find_element(self, *locator):
@@ -28,10 +30,13 @@ class BasePage:
 
 
     @allure.step("Ожидание кликабельности элемента с локатором")
-    def wait_for_element_clickable(self, locator, timeout=10):
+    def wait_for_element_clickable(self, locator, timeout=60):
         WebDriverWait(self.driver, timeout).until(
             EC.element_to_be_clickable(locator)
         )
+        return WebDriverWait(self.driver, timeout).until(
+        EC.element_to_be_clickable(locator)
+    )
 
     @allure.step("Получение текста элемента")
     def get_text(self, *locator):

@@ -1,5 +1,7 @@
 from selenium.webdriver.common.by import By
 
+
+
 RENTAL_PRICE_LOCATOR = (By.XPATH, ".//div[@id='accordion__heading-0']")
 RENTAL_PRICE_TEXT_LOCATOR = (By.XPATH, ".//div[@id='accordion__panel-0']")
 

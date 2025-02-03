@@ -16,7 +16,7 @@ class Data:
 
 
 # Локаторы
-class Locators:
+class TestData:
     metro_1 = "Преображенская площадь"
     metro_2 = "Сокольники"
     day_1 = datetime.now().date()  # Сегодня

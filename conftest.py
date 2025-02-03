@@ -5,9 +5,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-@pytest.fixture(scope="session")
-def base_url():
-    return "https://qa-scooter.praktikum-services.ru/"
+#@pytest.fixture(scope="session")
+#def base_url():
+    #return "https://qa-scooter.praktikum-services.ru/"
 
 
 
@@ -19,10 +19,3 @@ def driver():
     yield driver
     driver.quit()
 
-@pytest.fixture(scope="session")
-def driver2():
-    # Создаем и возвращаем драйвер для Firefox
-    driver = webdriver.Firefox()
-    driver.maximize_window()
-    yield driver
-    driver.quit()

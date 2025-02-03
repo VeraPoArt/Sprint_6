@@ -4,7 +4,7 @@ import allure
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-from data import Data, Locators
+from data import Data, TestData
 from locators.order_form_order_page import *
 from locators.order_rent_order_page import *
 from locators.popup_order_page import *
@@ -16,6 +16,8 @@ from pages.popup_order_page import PopupOrderPage
 from pages.track_order_page import TrackOrderPage
 import re
 import pytest
+
+from pages.urls import URLs
 
 
 @allure.testcase("Проверка функциональности оформления заказа с учетом задержек на клиентской стороне")
@@ -32,7 +34,7 @@ import pytest
         "metro": "Преображенская площадь",
         "telephone": Data.telephone_1,
         "day": "Сегодня",
-        "renta": Locators.renta_1,
+        "renta": TestData.renta_1,
         "comment": Data.comment_1,
     },
     {
@@ -43,14 +45,14 @@ import pytest
         "metro": "Сокольники",
         "telephone": Data.telephone_2,
         "day": "Завтра",
-        "renta": Locators.renta_2,
+        "renta": TestData.renta_2,
         "comment": Data.comment_2,
     },
 ])
-def test_order_form(driver, base_url, data_set):
+def test_order_form(driver, data_set):
     # Шаг 1: Открываем главную страницу и принимаем cookies
     page = MainPage(driver)
-    page.open(f"{base_url}")
+    page.open(f"{URLs.BASE_URL}")
     page.click_cookie_button()
 
     page.click_button_login_header(data_set["button"])
@@ -63,8 +65,7 @@ def test_order_form(driver, base_url, data_set):
     order_page.enter_address(data_set["address"])
 
     # Шаг 5: Ожидаем, пока выпадающий список станет доступным для клика
-    order_page.wait_for_element_clickable(SELECT_SEARCH_INPUT)
-
+    order_page.wait_for_search_input_clickable()
     # Шаг 7: Выбираем метро
     order_page.select_metro(data_set["metro"])
 
@@ -78,8 +79,7 @@ def test_order_form(driver, base_url, data_set):
     order_page.wait_for_header_rent()
 
     # Шаг 11: Проверяем, что элемент 'Про аренду' видим
-    assert order_page.find_element(*HEADER_RENT) is not None, "Элемент 'Про аренду' не найден на странице!"
-
+    assert order_page.get_header_rent_element() is not None, "Элемент 'Про аренду' не найден на странице!"  
     # Шаг 12: Переходим на страницу аренды
     rent_page = RentFormOrderPage(driver)
 
@@ -103,8 +103,7 @@ def test_order_form(driver, base_url, data_set):
 
     # Шаг 19: Проверяем, что попап отображается
     popup_page = PopupOrderPage(driver)
-    assert popup_page.find_element(*POPUP_HEADER) is not None, "Попап не отображается или заголовок неверен!"
-
+    assert popup_page.get_popup_header_element() is not None, "Попап не отображается или заголовок неверен!"    
     # Шаг 20: Подтверждаем заказ в попапе
     popup_page.click_yes_button()
     popup_page.wait_for_popup()
@@ -113,8 +112,7 @@ def test_order_form(driver, base_url, data_set):
     order_number = popup_page.get_order_number()
 
     # Шаг 22: Проверяем, что текст 'Заказ оформлен' отображается
-    assert popup_page.find_element(*ORDER_CONFIRMED_TEXT_LOCATOR) is not None, "Текст 'Заказ оформлен' не найден на странице!"
- 
+    assert popup_page.get_order_confirmed_text_element() is not None, "Текст 'Заказ оформлен' не найден на странице!" 
     # Шаг 23: Кликаем на кнопку "Просмотр статуса"
     popup_page.click_view_status_button()
     # Шаг 24: Переходим на страницу отслеживания

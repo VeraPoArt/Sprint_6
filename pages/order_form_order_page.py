@@ -2,8 +2,9 @@ from selenium.webdriver import ActionChains
 from selenium.webdriver.support.wait import WebDriverWait
 from locators.order_form_order_page import *
 from locators.order_rent_order_page import *
+from pages.urls import URLs
 from .base_page import BasePage
-from locators.main_page import LOGIN_BUTTON_HEADER
+from locators.main_page import *
 from selenium.webdriver.support import expected_conditions as EC
 import allure
 from selenium.webdriver.common.by import By
@@ -11,10 +12,12 @@ from data import *
 from locators.order_form_order_page import SELECT_METRO_1, SELECT_METRO_2  # Импортируем локаторы
 
 
-class OrderFormOrderPage(BasePage):
+class OrderFormOrderPage(BasePage, URLs):
 
 
-    # Методы для взаимодействия с элементами
+    @allure.step("Открытие главной страницы")
+    def open(self, url=URLs.BASE_URL):  # Добавляем параметр url с значением по умолчанию
+        self.driver.get(url)  # Открываем переданный URL
 
 
     @allure.step("Ввод имени ответственного")
@@ -51,6 +54,14 @@ class OrderFormOrderPage(BasePage):
     @allure.step("Ожидание заголовка 'Про аренду'")
     def wait_for_header_rent(self):
         self.wait_for_element_to_be_visible(HEADER_RENT)  # Ожидание видимости заголовка
+
+    @allure.step("Получение элемента заголовка аренды")
+    def get_header_rent_element(self):
+        return self.find_element(*HEADER_RENT)
+    
+    @allure.step("Ожидание кликабельности поля поиска")
+    def wait_for_search_input_clickable(self):
+        self.wait_for_element_clickable(SELECT_SEARCH_INPUT)
 
 
 

@@ -3,6 +3,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from locators.order_form_order_page import *
 from locators.order_rent_order_page import *
 from locators.popup_order_page import *
+from pages.urls import URLs
 from .base_page import BasePage
 from locators.main_page import *
 from selenium.webdriver.support import expected_conditions as EC
@@ -16,7 +17,13 @@ from locators.order_rent_order_page import *
 
 
 
-class RentFormOrderPage(BasePage):
+class RentFormOrderPage(BasePage, URLs):
+
+
+    @allure.step("Открытие главной страницы")
+    def open(self, url=URLs.BASE_URL):  # Добавляем параметр url с значением по умолчанию
+        self.driver.get(url)  # Открываем переданный URL
+
     @allure.step("Ввод даты доставки: {day}")
     def enter_delivery_date(self, day):
         self.find_element(*INPUT_DELIVERY_DATE).click()  # Кликаем на поле даты

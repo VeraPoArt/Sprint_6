@@ -10,9 +10,13 @@ from selenium.webdriver.support import expected_conditions as EC
 import allure
 from selenium.webdriver.common.by import By
 import re
+from pages.urls import URLs
 
+class PopupOrderPage(BasePage, URLs):
 
-class PopupOrderPage(BasePage):
+    @allure.step("Открытие главной страницы")
+    def open(self, url=URLs.BASE_URL):  # Добавляем параметр url с значением по умолчанию
+        self.driver.get(url)  # Открываем переданный URL
 
     @allure.step("Клик на кнопку 'Да'")
     def click_yes_button(self):
@@ -40,3 +44,11 @@ class PopupOrderPage(BasePage):
         self.click(VIEW_STATUS_BUTTON_LOCATOR)
         # Ожидание загрузки страницы отслеживания
         WebDriverWait(self.driver, 10).until(EC.url_contains("track"))
+
+    @allure.step("Получение элемента заголовка попапа")
+    def get_popup_header_element(self):
+        return self.driver.find_element(*POPUP_HEADER)
+    
+    @allure.step("Получение текста подтверждения заказа")
+    def get_order_confirmed_text_element(self):
+        return self.driver.find_element(*ORDER_CONFIRMED_TEXT_LOCATOR)

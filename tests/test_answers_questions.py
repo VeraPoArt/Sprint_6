@@ -1,10 +1,11 @@
 import pytest
-from conftest import base_url
 from locators.faq_page import *
 from data import *
 from pages.faq_page import FaqPage
 from pages.base_page import BasePage
 import allure
+
+from pages.urls import URLs
 
 @allure.title('Проверка ответов на вопросы в FAQ')  # Декоратор для заголовка теста
 @allure.description('На странице FAQ проверяем, что ответы на вопросы соответствуют ожидаемым значениям.')  # Описание теста
@@ -20,10 +21,12 @@ import allure
     (ORDER_CANCELLATION_LOCATOR, ORDER_CANCELLATION_TEXT_LOCATOR, order_cancellation),
     (DELIVERY_AREA_LOCATOR, DELIVERY_AREA_TEXT_LOCATOR, delivery_area)
 ])
-def test_question_answer(driver, question_locator, answer_locator, expected_answer, base_url):
+def test_question_answer(driver, question_locator, answer_locator, expected_answer):
     page = FaqPage(driver)
     
-    page.open(f"{base_url}")
+    page.open(f"{URLs.BASE_URL}")
+    page.click_cookie_button_faq()
+    
 
     page.click_question(question_locator)
 
